@@ -1,6 +1,20 @@
-function incrementar(){
-    numero = document.getElementById("num");
-    numero = parseInt(numero, 10);
-    numero += 1;
-    document.getElementById("num").innerHTML = numero.toString();
+let contador = 0
+
+const valor = document.getElementById("num")
+const btnIncrementar = document.getElementById("incremento")
+const btnDecrementar = document.getElementById("decremento")
+const btnResetear = document.getElementById("reseteo")
+
+btnIncrementar.onclick = function(){
+    contador++
+    valor.innerHTML = contador
+}
+
+btnDecrementar.onclick = function(){
+    contador--
+    valor.innerHTML = contador
+}
+
+btnResetear.onclick = function(){
+    valor.innerHTML = 0
 }
