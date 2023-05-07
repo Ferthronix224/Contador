@@ -16,5 +16,6 @@ btnDecrementar.onclick = function(){
 }
 
 btnResetear.onclick = function(){
-    valor.innerHTML = 0
+    contador = 0
+    valor.innerHTML = contador
 }
