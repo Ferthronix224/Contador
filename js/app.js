@@ -1,21 +1,41 @@
-let contador = 0
+const firebaseConfig = {
+    apiKey: "AIzaSyAh_qA3JHfEH2iUJbD2K4rQSjh6xfK_a30",
+    authDomain: "gs://contador-3a25c.appspot.com",
+    projectId: "contador-3a25c",
+    storageBucket: "https://contador-3a25c-default-rtdb.firebaseio.com/",
+    //messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "gs://contador-3a25c.appspot.com"
+};
 
-const valor = document.getElementById("num")
-const btnIncrementar = document.getElementById("incremento")
-const btnDecrementar = document.getElementById("decremento")
-const btnResetear = document.getElementById("reseteo")
+// Inicializa Firebase
+firebase.initializeApp(firebaseConfig);
+
+const database = firebase.database();
+let counterValue = 0
+
+const counterElement = document.getElementById("counter")
+const btnIncrementar = document.getElementById("increment")
+const btnDecrementar = document.getElementById("decrement")
+const btnResetear = document.getElementById("reset")
+
+const counterRef = database.ref('counter');
+
+counterRef.on('value', (snapshot) => {
+    counterValue = snapshot.val();
+    counterElement.textContent = counterValue;
+});
 
 btnIncrementar.onclick = function(){
-    contador++
-    valor.innerHTML = contador
+    counterValue++;
+    counterRef.set(counterValue);
 }
 
 btnDecrementar.onclick = function(){
-    contador--
-    valor.innerHTML = contador
+    counterValue--;
+    counterRef.set(counterValue);
 }
 
 btnResetear.onclick = function(){
-    contador = 0
-    valor.innerHTML = contador
+    counterValue = 0;
+    counterRef.set(counterValue);
 }
